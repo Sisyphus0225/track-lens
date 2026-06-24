@@ -785,11 +785,11 @@ function loadSiteTrend(canvas) {
       });
     } else {
       const parent = canvas.parentElement;
-      parent.innerHTML = '<div class="muted">暂无趋势数据（需要至少 2 天的快照）</div>';
+      if (parent) parent.innerHTML = '<div class="muted">暂无趋势数据（需要至少 2 天的快照）</div>';
     }
   }).catch(() => {
     const parent = canvas.parentElement;
-    parent.innerHTML = '<div class="muted">趋势数据加载失败</div>';
+    if (parent) parent.innerHTML = '<div class="muted">趋势数据加载失败</div>';
   });
 }
 
