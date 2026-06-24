@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.zip
+.trae/
+.specify/
+data/status.json
+data/snapshots/
+data/update_log.json
+start.bat
+创意提案_赛道透视镜.html
