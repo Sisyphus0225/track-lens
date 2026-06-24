@@ -7,6 +7,7 @@ from datetime import datetime
 
 import bleach
 from flask import Flask, jsonify, render_template, request, send_file, Response
+from whitenoise import WhiteNoise
 
 from config import (
     FLASK_HOST,
@@ -40,6 +41,9 @@ app = Flask(
     template_folder=os.path.join(BASE_DIR, "templates"),
     static_folder=os.path.join(BASE_DIR, "static"),
 )
+
+# WhiteNoise 中间件：在生产环境正确提供静态文件（正确的 MIME 类型和缓存头）
+app.wsgi_app = WhiteNoise(app.wsgi_app, root=os.path.join(BASE_DIR, "static"), prefix="static/")
 
 # 赛道分析缓存：基于 posts.json 修改时间失效，数据更新后自动重算
 _tracks_cache = {"data": None, "mtime": 0.0}
